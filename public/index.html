@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+  <script src="app.js"></script>
+  
+  <style>
+  #head li, #main li{
+    display: inline;
+    margin-left: 2vw;
+  }
+
+  #head, #main{
+    clear: both;
+    margin-top: 2vh;
+  }
+  </style>
+</head>
+
+<body ng-app="starter" ng-controller="myCtrl">
+
+
+<div class="container">
+  <h1 style="float: left;">Contact List App</h1>
+  <button id="add" style="margin-top: 4vh; margin-left: 4vh;" ng-click="modal()">Add Contact</button>
+
+   <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>         
+          <th>Last Name</th>
+          <th>View Contact</th>
+          <th>Edit Contact</th>
+          <th>Delete Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="contact in contactlist">
+          <td>{{contact.first_name}}</td>
+          <td>{{contact.last_name}}</td>
+          <td><button class="btn btn-primary" ng-click="view(contact)">View</button></td>
+          <td><button class="btn btn-warning" ng-click="edit(contact)">Edit</button></td>
+          <td><button class="btn btn-danger" ng-click="remove(contact)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>
+
+
+<!--Modal-->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color: black;">Message Form</h4>
+      </div>
+      <div class="modal-body">
+  <!--Form-->
+  <form class="form-horizontal" ng-submit="add()">
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">FirstName*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstname" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">LastName*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="lastname" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Email*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="email" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Phone</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="phone">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Birthdate</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="birthdate">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Profile Picture (URL)</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="picture">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Groups</label>
+    <div class="col-sm-10">
+      <input type="checkbox" id="group1" class="form-control" value="family">Family
+	  <input type="checkbox" id="group2" class="form-control" value="friend">Friend
+	  <input type="checkbox" id="group3" class="form-control" value="colleague">Colleague
+	  <input type="checkbox" id="group4" class="form-control" value="associate">Associate
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Comments</label>
+    <div class="col-sm-10">
+      <textarea maxlength="2000" style="width:100%; color: black;" class="form-control" id="comments"></textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+     <input type="submit" class="form-control" id="submit">
+   </div>
+
+</form>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--Modal 2-->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" style="color: black;">Message Form</h4>
+      </div>
+      <div class="modal-body">
+  <!--Form-->
+  <form class="form-horizontal" ng-submit="change()">
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">FirstName*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="firstname2" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">LastName*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="lastname2" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Email*</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="email2" required="required">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Phone</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="phone2">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Birthdate</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" id="birthdate2">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Profile Picture (URL)</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="picture2">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Groups</label>
+    <div class="col-sm-10">
+      <input type="checkbox" id="group1-2" class="form-control" value="family">Family
+	  <input type="checkbox" id="group2-2" class="form-control" value="friend">Friend
+	  <input type="checkbox" id="group3-2" class="form-control" value="colleague">Colleague
+	  <input type="checkbox" id="group4-2" class="form-control" value="associate">Associate
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-2 control-label" style="color: black;">Comments</label>
+    <div class="col-sm-10">
+      <textarea maxlength="2000" style="width:100%; color: black;" class="form-control" id="comments2"></textarea>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+     <input type="submit" class="form-control" id="submit2">
+   </div>
+
+</form>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+  
+
+</body>
+</html>
+

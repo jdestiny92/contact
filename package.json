@@ -1,0 +1,24 @@
+{
+  "name": "contact",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdestiny92/contact.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jdestiny92/contact/issues"
+  },
+  "homepage": "https://github.com/jdestiny92/contact#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "mongoose": "^4.7.2"
+  }
+}
